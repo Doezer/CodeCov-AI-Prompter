@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Codecov Coverage Fixer Prompt",
+  "version": "1.0.0",
+  "description": "Reads the currently open Codecov page and generates a ready-to-paste prompt for an AI coding agent to fix the missing test coverage.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Generate a coverage-fix prompt from this Codecov page"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["activeTab", "scripting", "clipboardWrite"],
+  "host_permissions": [
+    "https://*.codecov.io/*",
+    "https://codecov.io/*"
+  ]
+}

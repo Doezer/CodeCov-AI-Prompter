@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Codecov Coverage Fixer Prompt</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      body {
+        width: 380px;
+        margin: 0;
+        padding: 12px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        background: #1b1e23;
+        color: #ececec;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0 0 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      p.hint {
+        margin: 0 0 10px;
+        color: #a0a4ab;
+        line-height: 1.4;
+      }
+      button {
+        width: 100%;
+        padding: 8px 10px;
+        border: none;
+        border-radius: 6px;
+        background: #0ca678;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      button.secondary {
+        background: #33373f;
+        margin-top: 6px;
+      }
+      #status {
+        margin-top: 8px;
+        min-height: 16px;
+        color: #a0a4ab;
+      }
+      #status.error {
+        color: #f06a6a;
+      }
+      #status.success {
+        color: #57d38c;
+      }
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 10px;
+        height: 260px;
+        resize: vertical;
+        background: #101317;
+        color: #ececec;
+        border: 1px solid #33373f;
+        border-radius: 6px;
+        padding: 8px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11.5px;
+        line-height: 1.4;
+        display: none;
+      }
+      .footer {
+        margin-top: 8px;
+        color: #6c7078;
+        font-size: 11px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🩹 Codecov → AI Fix Prompt</h1>
+    <p class="hint">
+      Open a Codecov pull request or commit page ("Files changed" tab), then
+      click below to turn the missing-coverage report into a prompt you can
+      hand to an AI coding agent (Claude, Copilot, etc.).
+    </p>
+    <button id="generate">Generate prompt from this page</button>
+    <button id="copy" class="secondary" style="display: none">
+      Copy prompt to clipboard
+    </button>
+    <div id="status"></div>
+    <textarea id="output" readonly></textarea>
+    <div class="footer">
+      Tip: expand a file's diff panel on the Codecov page before generating to
+      also capture its exact uncovered line numbers.
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

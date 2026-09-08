@@ -1,0 +1,47 @@
+name: Package Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Validate popup JavaScript syntax
+        run: node --check popup.js
+
+      - name: Validate scraper JavaScript syntax
+        run: node --check scraper.js
+
+      - name: Run extension sanity checks
+        run: node scripts/validate-extension.mjs
+
+      - name: Prepare release artifacts
+        shell: pwsh
+        run: |
+          $distDir = Join-Path $env:GITHUB_WORKSPACE 'dist'
+          $version = $env:GITHUB_REF_NAME
+
+          New-Item -ItemType Directory -Path $distDir -Force | Out-Null
+
+          Compress-Archive -Path manifest.json, popup.html, popup.js, scraper.js, icons, README.md -DestinationPath (Join-Path $distDir "codecov-coverage-fixer-prompt-$version.zip") -Force
+
+      - name: Publish GitHub release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/codecov-coverage-fixer-prompt-${{ github.ref_name }}.zip

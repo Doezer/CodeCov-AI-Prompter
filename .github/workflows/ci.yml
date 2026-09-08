@@ -1,0 +1,29 @@
+name: Extension CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Validate popup JavaScript syntax
+        run: node --check popup.js
+
+      - name: Validate scraper JavaScript syntax
+        run: node --check scraper.js
+
+      - name: Run extension sanity checks
+        run: node scripts/validate-extension.mjs

@@ -26,12 +26,36 @@ GitHub Copilot, etc.) to go fix.
 
 Nothing is sent anywhere — everything runs locally in your browser.
 
-## Installing (unpacked, for development/personal use)
+## Install
 
-1. Open `chrome://extensions` in Chrome (or any Chromium-based browser).
-2. Enable **Developer mode** (top-right toggle).
-3. Click **Load unpacked** and select this folder.
-4. Pin the extension, open a Codecov PR page, and click the icon.
+### From source
+
+1. Download or clone this repository.
+2. Open `chrome://extensions` in Chrome (or any Chromium-based browser).
+3. Enable **Developer mode** (top-right toggle).
+4. Click **Load unpacked** and select this folder.
+5. Pin the extension, open a Codecov PR page, and click the icon.
+
+### From a release zip
+
+1. Download the release asset from [GitHub Releases](../../releases).
+2. Unzip it locally.
+3. Load the extracted folder with **Load unpacked** in `chrome://extensions`.
+
+## Validation (for devs)
+
+Run the CI checks locally before opening a PR:
+
+```
+node --check popup.js
+node --check scraper.js
+node scripts/validate-extension.mjs
+```
+
+Releases are built automatically by `.github/workflows/release.yml` whenever a
+`v*` tag is pushed (or via manual dispatch), packaging `manifest.json`,
+`popup.html`, `popup.js`, `scraper.js`, `icons/`, and `README.md` into a zip
+attached to the GitHub release.
 
 ## Files
 

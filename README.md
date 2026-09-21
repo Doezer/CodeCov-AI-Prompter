@@ -138,3 +138,7 @@ Bug reports and feature requests are welcome — the issue templates under
 [`.github/ISSUE_TEMPLATE`](.github/ISSUE_TEMPLATE) will prompt you for what is
 needed. Selector fixes after a Codecov redesign are especially useful: pull
 requests are very welcome.
+
+## License
+
+[MIT](LICENSE).

@@ -38,7 +38,7 @@ jobs:
 
           New-Item -ItemType Directory -Path $distDir -Force | Out-Null
 
-          Compress-Archive -Path manifest.json, popup.html, popup.js, scraper.js, icons, README.md -DestinationPath (Join-Path $distDir "codecov-coverage-fixer-prompt-$version.zip") -Force
+          Compress-Archive -Path manifest.json, popup.html, popup.js, scraper.js, icons, README.md, LICENSE -DestinationPath (Join-Path $distDir "codecov-coverage-fixer-prompt-$version.zip") -Force
 
       - name: Publish GitHub release assets
         uses: softprops/action-gh-release@v2
